@@ -101,3 +101,23 @@ select exercice.niveau, count(*), sum(count(*)) as cumul
 from exercice
 group by exercice.niveau
 ```
+
+#5
+
+#6
+```
+Les vues materialisées permettent de masquer l'organisation des données à l'utilisateur.
+```
+
+#7
+```
+Slow Changing Dimension : Il s'agit d'une dimensions qui va évoluer
+lentement dans le temps.
+```
+
+#8
+```
+C'est un processus qui extrait des données sources les transforment 
+dans des formats demandés et qui finalement charge les données formatée 
+dans un DW.
+```
