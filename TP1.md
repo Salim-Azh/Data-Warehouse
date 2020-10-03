@@ -145,6 +145,30 @@ from (select
 where rank<3;
 ```
 
+```sql
+select distinct * 
+from (select
+        decode(localite, null, 'Toutes localités') as localite,
+        niveau.niveau,
+        annee_naissance,
+        decode(notion.notion, null, 'Toutes notions confondues') as notion,
+        count(idex) as nb_exo,
+        rank() over (order by count(*)) as rank
+    from etablissement, prof, niveau, notion, exercice
+    where exercice.idex = notion.idexo
+    and exercice.proprietaire = prof.idp
+    and prof.rne = etablissement.rne
+    and exercice.niveau = niveau.niveau
+    group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
+    )
+where rank<3
+FETCH FIRST 2 ROWS ONLY;
+```
+
+```sql
+... notion par notion
+```
+
 ## 6
 
 ```text
