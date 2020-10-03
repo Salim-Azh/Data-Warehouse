@@ -108,15 +108,31 @@ order by eleve.idel;
 ```
 
 ```sql
-select exercice.niveau, count(*), sum(count(*)) as cumul
+/*TODO*/
+/*select exercice.niveau, count(*), sum(count(*)) as cumul
 from exercice
-group by exercice.niveau
+group by exercice.niveau*/
+
+ select niveau.niveau, count(*) as nb_exercice_niveau, sum(count(x))
+from exercice, niveau, (
+
+select exercice.idex as x
+    from exercice, niveau
+    where
+    exercice.niveau = niveau.niveau
+        and
+        exercice.niveau <= '4eme'
+
+)
+where
+    exercice.niveau = niveau.niveau
+group by niveau.niveau
 ```
 
 ```sql
 select devoir.niveau as d_niveau, exercice.niveau as ex_niveau, count(*) as nb
 from exercice, contenu, devoir
-where 
+where
     exercice.idex = contenu.idex
 and devoir.idd = contenu.idd
 and devoir.niveau <> exercice.niveau
@@ -126,7 +142,7 @@ group by grouping sets((devoir.niveau, exercice.niveau), ())
 ## 5
 
 ```sql
-select * 
+select *
 from (select
         decode(localite, null, 'Toutes localités') as localite,
         niveau.niveau,
@@ -146,7 +162,7 @@ where rank<3;
 ```
 
 ```sql
-select distinct * 
+select distinct *
 from (select
         decode(localite, null, 'Toutes localités') as localite,
         niveau.niveau,
@@ -166,7 +182,22 @@ FETCH FIRST 2 ROWS ONLY;
 ```
 
 ```sql
-... notion par notion
+select notion, nb_exo, rank
+from (select
+        localite,
+        exercice.niveau,
+        annee_naissance,
+        notion.notion as notion,
+        count(idex) as nb_exo,
+        rank() over (order by count(*) desc) as rank
+    from etablissement, prof, niveau, notion, exercice
+    where exercice.idex = notion.idexo
+    and exercice.proprietaire = prof.idp
+    and prof.rne = etablissement.rne
+    group by grouping sets((localite, exercice.niveau, annee_naissance, notion.notion),())
+    )
+where rank<3
+group by notion, nb_exo, rank;
 ```
 
 ## 6
@@ -185,7 +216,7 @@ lentement dans le temps.
 ## 8
 
 ```text
-C'est un processus qui extrait des données sources les transforment 
-dans des formats demandés et qui finalement charge les données formatée 
+C'est un processus qui extrait des données sources les transforment
+dans des formats demandés et qui finalement charge les données formatée
 dans un DW.
 ```
