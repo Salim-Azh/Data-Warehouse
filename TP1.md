@@ -1,20 +1,24 @@
-# 1
-```
+# TP1 Data Warehouse
+
+## 1
+
+```text
 Schéma : Etoile
 cf ...
 ```
 
-# 2
+## 2
+
 ``` sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
-where
-exercice.idex = notion.idexo
+where exercice.idex = notion.idexo
 and exercice.proprietaire = prof.idp
 and prof.rne = etablissement.rne
 and exercice.niveau = niveau.niveau
 group by localite, niveau.niveau, annee_naissance, notion.notion;
 ```
+
 ``` sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
@@ -25,6 +29,7 @@ and prof.rne = etablissement.rne
 and exercice.niveau = niveau.niveau
 group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
 ```
+
 ``` sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
@@ -35,6 +40,7 @@ and prof.rne = etablissement.rne
 and exercice.niveau = niveau.niveau
 group by rollup(localite, niveau.niveau, annee_naissance, notion.notion);
 ```
+
 ``` sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
@@ -45,6 +51,7 @@ and prof.rne = etablissement.rne
 and exercice.niveau = niveau.niveau
 group by grouping sets((localite, niveau.niveau, annee_naissance, notion.notion), ());
 ```
+
 ```sql
 select
     decode(localite, null, 'Toutes localités') as localite,
@@ -61,12 +68,14 @@ and exercice.niveau = niveau.niveau
 group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
 ```
 
-# 3
-```
+## 3
+
+```text
 ...
 ```
 
-# 4
+## 4
+
 ```sql
 select
     decode(localite, null, 'Toutes localités') as localite,
@@ -84,6 +93,7 @@ and exercice.niveau = niveau.niveau
 group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
 
 ```
+
 ```sql
 select eleve.idel, eleve.niveau, count(*) as nb_expass, ratio_to_report(count(*)) over (partition by eleve.niveau) as ratio
 from eleve, passage, devoir, exercice, contenu
@@ -96,27 +106,31 @@ and exercice.niveau = eleve.niveau
 group by eleve.idel, eleve.niveau
 order by eleve.idel;
 ```
+
 ```sql
 select exercice.niveau, count(*), sum(count(*)) as cumul
 from exercice
 group by exercice.niveau
 ```
 
-#5
+## 5
 
-#6
-```
+## 6
+
+```text
 Les vues materialisées permettent de masquer l'organisation des données à l'utilisateur.
 ```
 
-#7
-```
+## 7
+
+```text
 Slow Changing Dimension : Il s'agit d'une dimensions qui va évoluer
 lentement dans le temps.
 ```
 
-#8
-```
+## 8
+
+```text
 C'est un processus qui extrait des données sources les transforment 
 dans des formats demandés et qui finalement charge les données formatée 
 dans un DW.
