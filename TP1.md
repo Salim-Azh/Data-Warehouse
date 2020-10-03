@@ -113,6 +113,16 @@ from exercice
 group by exercice.niveau
 ```
 
+```sql
+select devoir.niveau as d_niveau, exercice.niveau as ex_niveau, count(*) as nb
+from exercice, contenu, devoir
+where 
+    exercice.idex = contenu.idex
+and devoir.idd = contenu.idd
+and devoir.niveau <> exercice.niveau
+group by grouping sets((devoir.niveau, exercice.niveau), ())
+```
+
 ## 5
 
 ```sql
