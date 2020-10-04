@@ -108,25 +108,11 @@ order by eleve.idel;
 ```
 
 ```sql
-/*TODO*/
-/*select exercice.niveau, count(*), sum(count(*)) as cumul
-from exercice
-group by exercice.niveau*/
-
- select niveau.niveau, count(*) as nb_exercice_niveau, sum(count(x))
-from exercice, niveau, (
-
-select exercice.idex as x
-    from exercice, niveau
-    where
+SELECT niveau.niveau,COUNT(*) AS nb_exercice_niveau,SUM(COUNT(*)) OVER (ORDER BY niveau.niveau DESC) AS cumul
+FROM exercice,niveau
+WHERE
     exercice.niveau = niveau.niveau
-        and
-        exercice.niveau <= '4eme'
-
-)
-where
-    exercice.niveau = niveau.niveau
-group by niveau.niveau
+GROUP BY niveau.niveau
 ```
 
 ```sql
