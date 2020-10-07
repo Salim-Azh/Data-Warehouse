@@ -192,11 +192,27 @@ group by notion, nb_exo, rank;
 Les vues materialisées permettent de masquer l'organisation des données à l'utilisateur.
 ```
 
+```sql
+###TODO###
+CREATE MATERIALIZED VIEW OLAPV_EXO
+REFRESH START WITH SYSDATE NEXT SYSDATE+1
+ENABLE QUERY REWRITE
+AS
+SELECT localite, exercice.niveau,annee_naissance,notion.notion, COUNT(idex) AS nb_exo
+FROM etablissement, prof,notion, exercice
+WHERE exercice.idex = notion.idexo
+AND exercice.proprietaire = prof.idp
+AND prof.rne = etablissement.rne
+GROUP BY localite, exercice.niveau,annee_naissance,notion.notion;
+```
+
 ## 7
 
 ```text
 Slow Changing Dimension : Il s'agit d'une dimensions qui va évoluer
 lentement dans le temps.
+
+exemple ...
 ```
 
 ## 8
