@@ -2,10 +2,8 @@
 
 ## 1
 
-```text
-http://github.com - automatic!
-[GitHub](http://github.com)
-```
+[Schema](https://github.com/Salim-Azh/Data-Warehouse/blob/main/Schema.pdf)
+
 
 ## 2
 
