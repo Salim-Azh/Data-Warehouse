@@ -3,8 +3,8 @@
 ## 1
 
 ```text
-Schéma : Etoile
-cf ...
+http://github.com - automatic!
+[GitHub](http://github.com)
 ```
 
 ## 2
