@@ -68,19 +68,13 @@ group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
 
 ## 3
 
-```sql
-select count (*)
-from etablissement, prof, niveau, notion, exercice
-where
-    etablissement.rne = prof.rne 
-and prof.idp = exercice.proprietaire
-and exercice.niveau = niveau.niveau
-and exercice.idex = notion.idexo;
+3 notions, 4 niveaux, 4 localités et 4 année de naissances.
+Nombres de cellules : 3 * 4 * 4 * 4 = 192
 
-select count (*)
-from etablissement, prof, niveau, notion;
-```
-Donc : densité = 11 / 1408 = 0.008
+Nombre de cellules remplies : 32 (group by) 
+
+Densité = 32/192 = 0.17
+
 
 ## 4
 
