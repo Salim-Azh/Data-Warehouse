@@ -68,9 +68,19 @@ group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
 
 ## 3
 
-```text
-...
+```sql
+select count (*)
+from etablissement, prof, niveau, notion, exercice
+where
+    etablissement.rne = prof.rne 
+and prof.idp = exercice.proprietaire
+and exercice.niveau = niveau.niveau
+and exercice.idex = notion.idexo;
+
+select count (*)
+from etablissement, prof, niveau, notion;
 ```
+Donc : densité = 11 / 1408 = 0.008
 
 ## 4
 
