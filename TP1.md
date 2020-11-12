@@ -224,8 +224,39 @@ Si l'on choisit de ne pas garder une trace des livres emprutés, il faudra plut�
 
 ## 8
 
+
+• Quels sont les outils du marché ?
 ```text
-C'est un processus qui extrait des données sources les transforment
-dans des formats demandés et qui finalement charge les données formatée
-dans un DW.
+Un ETL est un processus qui extrait des données sources les transforment dans des formats demandés et qui finalement charge les données formatée dans un Data Warehouse.
+```
+
+```text
+L'étape de transformation consiste à exécuter une série de fonctions et à appliquer des ensembles de règles aux données extraites, pour les convertir dans un format standard afin de répondre aux exigences de schéma de la base de données cible.
+
+Les différents transformations sont :
+* Convertir (entre différentes unités euros/ dollards, metres/feet)
+
+* Reformater (remplacer les données vide par null)
+
+* Trier ou filtrer (Par ville ou autres)
+
+* Effacer les doublons
+
+* Traduire d'une langue à l'autre
+```
+
+```text
+Business Object Data Integrator:
+Data Integrator, intégrée ou non à la suite Business Objects XI, dispose d'une fonctionnalité de centralisation des metadonnées et un module complet de qualité des données (normalisation, correction...).
+
+Data Manager:
+Les metadonnées sont gérées en central et stockées dans un SGBDR tiers. L'extraction des données s'effectue par batch et plusieurs connecteurs ERP sont disponibles en natif (PeopleSoft, SAP et Oracle).
+
+Clover.ETL:
+En gérant les processus légers (threads) de façon indépendante, Clover.ETL partage la charge de transformation sur différents processeurs et s'adapte ainsi aux multiples configurations matérielles
+
+Sybase ETL:
+Le module Sybase ETL est commercialisé indépendamment de Data Integration Suite, comprenant en outre des briques de réplication et de fédération de données hétérogènes
+
+
 ```
