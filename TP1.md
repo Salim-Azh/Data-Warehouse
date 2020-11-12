@@ -224,8 +224,6 @@ Si l'on choisit de ne pas garder une trace des livres emprutés, il faudra plut�
 
 ## 8
 
-
-• Quels sont les outils du marché ?
 ```text
 Un ETL est un processus qui extrait des données sources les transforment dans des formats demandés et qui finalement charge les données formatée dans un Data Warehouse.
 ```
