@@ -218,7 +218,16 @@ AS
 /*
 Si on veux rafraichir une fois par jour, on doit specifier refresh on demand et fixer le prochain rafraichissement
 en tant que*/ sysdate + 1
+```
 
+```sql
+Select * From OLAPV_EXO;
+Select * From exercice;
+
+insert into EXERCICE (IDEX,DATE_CREATION,PROPRIETAIRE,NIVEAU,CONTENU) values (12,sysdate,2,'6eme','Calculer 1-1');
+
+Select * From exercice;
+Select * From OLAPV_EXO;/*non mis a jours*/
 
 ```
 
