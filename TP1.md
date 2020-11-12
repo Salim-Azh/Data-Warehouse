@@ -229,6 +229,14 @@ insert into EXERCICE (IDEX,DATE_CREATION,PROPRIETAIRE,NIVEAU,CONTENU) values (12
 Select * From exercice;
 Select * From OLAPV_EXO;/*non mis a jours*/
 
+Select STALENESS From user_mviews
+Where user_mviews.mview_name = 'OLAPV_EXO' /* > NEEDS_COMPILE */
+
+exec dbms_mview.refresh('olapv_exo')
+
+Select STALENESS From user_mviews
+Where user_mviews.mview_name = 'OLAPV_EXO' /* > FRESH */
+
 ```
 
 ## 7
