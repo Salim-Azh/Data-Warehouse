@@ -218,7 +218,7 @@ AS
 /*
 Si on veux rafraichir une fois par jour, on doit specifier refresh on demand et fixer le prochain rafraichissement
 en tant que*/ sysdate + 1
-*/
+
 
 ```
 
