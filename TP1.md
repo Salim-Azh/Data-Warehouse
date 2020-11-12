@@ -202,6 +202,26 @@ AND prof.rne = etablissement.rne
 GROUP BY localite, exercice.niveau,annee_naissance,notion.notion;
 ```
 
+```sql
+/*
+On cree la vue materialisé en utilisant les clause
+REFRESH ON DEMAND et
+START WITH ... NEXT ...
+*/
+CREATE MATERIALIZED VIEW OLAPV_EXO
+REFRESH ON DEMAND
+start with sysdate next sysdate + 1
+ENABLE QUERY REWRITE
+AS
+/*...*/
+
+/*
+Si on veux rafraichir une fois par jour, on doit specifier refresh on demand et fixer le prochain rafraichissement
+en tant que*/ sysdate + 1
+*/
+
+```
+
 ## 7
 
 ```text
