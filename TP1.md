@@ -207,10 +207,19 @@ GROUP BY localite, exercice.niveau,annee_naissance,notion.notion;
 ## 7
 
 ```text
-Slow Changing Dimension : Il s'agit d'une dimensions qui va évoluer
-lentement dans le temps.
+Slow Changing Dimension : Dimension qui stocke et gère les données actuelles et historiques au fil du temps dans un entrepôt de données.
 
-exemple ...
+Dans le cadre des données de bibliothèques, il s'agit de stocker qui emprunte le livre.
+
+Solutions :
+- Écrasement de l’ancienne valeur / remplacer
+- Création d'une nouvelle ligne
+- Création d'une nouvelle colonne
+- Valeur d’origine / valeur courante
+- hybride
+
+Si l'on choisit de garder une trace des livres empruntés, il faudra utilisé la solution de création de nouvelle ligne en ajoutant les dates d'emprunts.
+Si l'on choisit de ne pas garder une trace des livres emprutés, il faudra plutôt écraser l'ancien emprunteur et le remplacer par le nouveau.
 ```
 
 ## 8
