@@ -191,9 +191,7 @@ Les vues materialisées permettent de masquer l'organisation des données à l'u
 ```
 
 ```sql
-###TODO###
 CREATE MATERIALIZED VIEW OLAPV_EXO
-REFRESH START WITH SYSDATE NEXT SYSDATE+1
 ENABLE QUERY REWRITE
 AS
 SELECT localite, exercice.niveau,annee_naissance,notion.notion, COUNT(idex) AS nb_exo
