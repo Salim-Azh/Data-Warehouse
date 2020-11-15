@@ -16,7 +16,7 @@ and exercice.niveau = niveau.niveau
 group by localite, niveau.niveau, annee_naissance, notion.notion;
 ```
 
-![requete group by](./grouby.png)
+![requete group by](./groupeby.png)
 
 ```
 GROUP BY : La clause GROUP BY est une fonction d’agrégation qui prend plusieurs lignes retournées par une query et les agrège en une seule ligne résultat.
@@ -36,7 +36,7 @@ and exercice.niveau = niveau.niveau
 group by rollup(localite, niveau.niveau, annee_naissance, notion.notion);
 ```
 
-![requete group by](./groupbyrollup.png)
+![requete group by roll up](./groupbyrollup.png)
 
 ```
 ROLLUP : En plus de l’agrégation offert par le group by, l’extension ROLLUP produit des sous-totaux de droite à gauche et des grand-totaux pour les colonnes choisies
@@ -60,7 +60,7 @@ and exercice.niveau = niveau.niveau
 group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
 ```
 
-![requete group by](./groupbycube.png)
+![requete group by cube](./groubycube.png)
 
 ```
 CUBE : En plus de l’agrégation offert par le ROLLUP, l’extension CUBE produit des sous-totaux pour toute les combinaisons de dimension spécifiées. Si dans le cube il y a n colonnes listées, il y aura 2^n combinaisons sous totales.
@@ -77,7 +77,7 @@ and exercice.niveau = niveau.niveau
 group by grouping sets((localite, niveau.niveau, annee_naissance, notion.notion), ());
 ```
 
-![requete group by](./groupby_groupingsets.png)
+![requete group by grouping sets](./groupby_groupingsets.png)
 
 ```
 GROUPING SETS : Permet d’éviter de calculer tous les sous-totaux d’un cube car cela constitue une opération lourde surtout si le nombre de dimensions est élevé, à la place grouping sets permet pour spécifier les dimensions qui nous intéressent
