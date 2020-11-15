@@ -16,6 +16,8 @@ and exercice.niveau = niveau.niveau
 group by localite, niveau.niveau, annee_naissance, notion.notion;
 ```
 
+![requete group by](./groubycube.png)
+
 ```
 GROUP BY : La clause GROUP BY est une fonction d’agrégation qui prend plusieurs lignes retournées par une query et les agrège en une seule ligne résultat. Elle permet d’arranger des données ayant des attributs en communs dans des groupes.
 Commentaire : Les résultats du group by nous donne le nombre d'exercices groupes par notion, niveau, localité du créateur et date de naissance du créateur.
