@@ -4,10 +4,9 @@
 
 <img src="https://github.com/Salim-Azh/Data-Warehouse/blob/main/schema-star.png" width="50%">
 
-
 ## 2
 
-``` sql
+```sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
 where exercice.idex = notion.idexo
@@ -17,18 +16,10 @@ and exercice.niveau = niveau.niveau
 group by localite, niveau.niveau, annee_naissance, notion.notion;
 ```
 
-``` sql
-select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
-from etablissement, prof, niveau, notion, exercice
-where
-exercice.idex = notion.idexo
-and exercice.proprietaire = prof.idp
-and prof.rne = etablissement.rne
-and exercice.niveau = niveau.niveau
-group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
-```
+GROUP BY : La clause GROUP BY est une fonction d’agrégation qui prend plusieurs lignes retournées par une query et les agrège en une seule ligne résultat. Elle permet d’arranger des données ayant des attributs en communs dans des groupes.
+Commentaire : Les résultats du group by nous donne le nombre d'exercices groupes par notion, niveau, localité du créateur et date de naissance du créateur.
 
-``` sql
+```sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
 where
@@ -39,7 +30,29 @@ and exercice.niveau = niveau.niveau
 group by rollup(localite, niveau.niveau, annee_naissance, notion.notion);
 ```
 
-``` sql
+ROLLUP : En plus de l’agrégation offert par le group by, l’extension ROLLUP produit des sous-totaux de droite à gauche et des grand-totaux pour les colonnes choisies
+
+Dans notre requête on obtient ainsi les totaux suivants:
+(LOCALITE, NIVEAU, ANNEE_NAISSANCE, NOTION)
+(LOCALITE, NIVEAU, ANNEE_NAISSANCE, null)
+(LOCALITE, NIVEAU, null, null)
+(LOCALITE, null, null, null)
+(null, null, null, null) -> grand total
+
+```sql
+select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
+from etablissement, prof, niveau, notion, exercice
+where
+exercice.idex = notion.idexo
+and exercice.proprietaire = prof.idp
+and prof.rne = etablissement.rne
+and exercice.niveau = niveau.niveau
+group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
+```
+
+CUBE : En plus de l’agrégation offert par le ROLLUP, l’extension CUBE produit des sous-totaux pour toute les combinaisons de dimension spécifiées. Si dans le cube il y a n colonnes listées, il y aura 2^n combinaisons sous totales.
+
+```sql
 select localite, niveau.niveau, annee_naissance, notion.notion, count(idex) as nb_exo
 from etablissement, prof, niveau, notion, exercice
 where
@@ -49,6 +62,8 @@ and prof.rne = etablissement.rne
 and exercice.niveau = niveau.niveau
 group by grouping sets((localite, niveau.niveau, annee_naissance, notion.notion), ());
 ```
+
+GROUPING SETS : Permet d’éviter de calculer tous les sous-totaux d’un cube car cela constitue une opération lourde surtout si le nombre de dimensions est élevé, à la place grouping sets permet pour spécifier les dimensions qui nous intéressent
 
 ```sql
 select
@@ -69,12 +84,11 @@ group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
 ## 3
 
 3 notions, 4 niveaux, 4 localités et 4 année de naissances.
-Nombres de cellules : 3 * 4 * 4 * 4 = 192
+Nombres de cellules : 3 _ 4 _ 4 \* 4 = 192
 
-Nombre de cellules remplies : 32 (group by) 
+Nombre de cellules remplies : 32 (group by)
 
 Densité = 32/192 = 0.17
-
 
 ## 4
 
