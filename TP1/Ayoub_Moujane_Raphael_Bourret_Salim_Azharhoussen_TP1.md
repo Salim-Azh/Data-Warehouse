@@ -2,7 +2,7 @@
 
 ## 1
 
-<img src="https://github.com/Salim-Azh/Data-Warehouse/blob/main/schema-star.png" width="50%">
+<img src="./schema-star.png" width="50%">
 
 ## 2
 
