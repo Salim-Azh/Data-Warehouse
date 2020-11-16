@@ -18,7 +18,7 @@ group by localite, niveau.niveau, annee_naissance, notion.notion;
 
 ![requete group by](./groupeby.png)
 
-```
+```text
 GROUP BY : La clause GROUP BY est une fonction d’agrégation qui prend plusieurs lignes retournées par une query et les agrège en une seule ligne résultat.
 Elle permet d’arranger des données ayant des attributs en communs dans des groupes.
 
@@ -38,7 +38,7 @@ group by rollup(localite, niveau.niveau, annee_naissance, notion.notion);
 
 ![requete group by roll up](./groupbyrollup.png)
 
-```
+```text
 ROLLUP : En plus de l’agrégation offert par le group by, l’extension ROLLUP produit des sous-totaux de droite à gauche et des grand-totaux pour les colonnes choisies
 
 Dans notre requête on obtient ainsi les totaux suivants:
@@ -62,7 +62,7 @@ group by cube(localite, niveau.niveau, annee_naissance, notion.notion);
 
 ![requete group by cube](./groubycube.png)
 
-```
+```text
 CUBE : En plus de l’agrégation offert par le ROLLUP, l’extension CUBE produit des sous-totaux pour toute les combinaisons de dimension spécifiées. Si dans le cube il y a n colonnes listées, il y aura 2^n combinaisons sous totales.
 ```
 
@@ -79,7 +79,7 @@ group by grouping sets((localite, niveau.niveau, annee_naissance, notion.notion)
 
 ![requete group by grouping sets](./groupby_groupingsets.png)
 
-```
+```text
 GROUPING SETS : Permet d’éviter de calculer tous les sous-totaux d’un cube car cela constitue une opération lourde surtout si le nombre de dimensions est élevé, à la place grouping sets permet pour spécifier les dimensions qui nous intéressent
 ```
 
@@ -102,7 +102,7 @@ group by cube(localite, niveau.niveau, annee_naissance, notion.notion)
 ## 3
 
 3 notions, 4 niveaux, 4 localités et 4 année de naissances.
-Nombres de cellules : 3 _ 4 _ 4 \* 4 = 192
+Nombres de cellules : 3\* 4\*4 \* 4 = 192
 
 Nombre de cellules remplies : 32 (group by)
 
